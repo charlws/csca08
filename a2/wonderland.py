@@ -208,7 +208,7 @@ def swap_around(matrix: list[list[int]]) -> list[list[int]]:
     cols = len(matrix[0])
 
     # init ret matrix
-    # yes, python is so stupid
+    # yes, python is stupid
     # doing [[0] * rows] * cols will create alias
     # c++ is so much better as you just do "int ret[N][M]"
     # conclusion: never use python to do algorithm stuff
@@ -338,23 +338,6 @@ def search_diagonals(matrix: list[list[int]], series: list[int]) -> bool:
     cols = len(matrix[0])
     lsts = []
 
-    # ==== BEGIN ranting content ====
-    # ==== the "you" here does not explicitly refer to "the marking TA" ====
-    # ==== it refers to current-day "CS education" ====
-    # why I'm using this "lsts" thing to store all possible lists?
-    # BECAUSE THE STUPID PyTA thinks my code has too many branches (12)
-    # THUS I CANNOT DO "search_list" AND RETURN EARLY
-    # >>> DID THIS REDUCE COMPLEXITY? THIS REDUCED EFFICIENCY!
-
-    # FIX YOUR STUPID STYLE CHECKER FOR LAST CENTURY!
-    # AT LEAST CHANGE 80 CHAR LIMIT TO 120!!!
-
-    # fyi I wrote a bunch of API endpoints with 100+ lines code, with lots of
-    # for and if to check different conditions. While I did reduce nested loops
-    # , because they are bad and reduce readbility for sure, I guess it's still
-    # way too complex and PyTA is going to throw 1000 errors on my project code
-    # ==== END ranting content ====
-
     # for i in range(rows):
     #     print(matrix[i])
     # print(" === ")
@@ -403,7 +386,6 @@ def search_diagonals(matrix: list[list[int]], series: list[int]) -> bool:
             # return "found in bl-tr (br)"
             # return True
 
-    # I'm actually curious if "any" counts as another "branch"
     return any(search_list(x, series) != -1 for x in lsts)
 
 def validate_coordinates(matrix: list[list[int]], row_idx: int,
