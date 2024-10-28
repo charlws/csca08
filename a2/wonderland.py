@@ -208,11 +208,6 @@ def swap_around(matrix: list[list[int]]) -> list[list[int]]:
     cols = len(matrix[0])
 
     # init ret matrix
-    # yes, python is stupid
-    # doing [[0] * rows] * cols will create alias
-    # c++ is so much better as you just do "int ret[N][M]"
-    # conclusion: never use python to do algorithm stuff
-    # (you want efficiency, then don't use python)
     ret = []
     for i in range(cols):
         row = []
