@@ -78,8 +78,8 @@ def sum_of_digits(number: int) -> int:
 
 def is_valid_account(num_array: list[int]) -> bool:
     '''
-    Given the account number in the format of an integer list 'num_array',
-    return whether the account number is valid based on Wacky's Algorithm.
+    Return True if the given account number 'num_array' is valid
+    based on Wacky's Algorithm. Otherwise, return False.
 
     Preconditions: len(num_array) >= 3
 
@@ -101,8 +101,8 @@ def is_valid_account(num_array: list[int]) -> bool:
 
 def memory_median(num_array: list[int]) -> float:
     '''
-    Given a list of integers 'num_array', return the median of the list.
-    Note that if len(num_array) == 2, the median is the average of the
+    Return the median of the list of numbers 'num_array'.
+    Note that if len(num_array) % 2 == 0, the median is the average of the
     two middle numbers.
 
     Preconditions: len(num_array) >= 1
@@ -122,8 +122,8 @@ def memory_median(num_array: list[int]) -> float:
 
 def memory_sequence(num_array: list[int]) -> list[int]:
     '''
-    Given a list of integers 'num_array', return a modified list based on
-    'num_array', where only the first occurence of an integer is kept.
+    Return a list of integers representing the first occurence of each
+    unique number in 'num_array', in the original order of occurence.
 
     Preconditions: len(num_array) >= 1
 
@@ -144,9 +144,9 @@ def memory_sequence(num_array: list[int]) -> list[int]:
 
 def memory_count(num_array: list[int], recall_array: list[int]) -> list[int]:
     '''
-    Given two lists of integers 'num_array' and 'recall_array', return a new
-    list of array based on 'recall_array', where each item represents the number
-    of times the item in 'recall_array' appears in 'num_array'.
+    Return a list of numbers with the same length as 'recall_array', where
+    the 'i-th' number in the returned list is the number of times the 'i-th'
+    number in 'recall_array' appeared in 'num_array'.
 
     Preconditions: len(num_array) >= 1
                    len(recall_array) >= 1
@@ -187,11 +187,8 @@ def in_matrix(row: int, col: int, max_rows: int, max_cols: int) -> bool:
 
 def swap_around(matrix: list[list[int]]) -> list[list[int]]:
     '''
-    Return a swapped around matrix based on the given 'matrix'. Specifically,
-    a new matrix where each column (left-to-right) in new matrix
-    represents each row (top-to-down) in old matrix 'matrix'. For each
-    column in new matrix, the numbers from top to down are the numbers
-    from left to right in the corresponding row of the old matrix.
+    Return a swapped around matrix with M*N dimensions
+    based on the given 'matrix' with N*M dimensions.
 
     Preconditions: len(matrix) == N
                    len(matrix[i]) == M, 0 <= i < N
@@ -264,8 +261,8 @@ def search_list(num_list: list[int], series: list[int]) -> int:
 
 def search_rows(matrix: list[list[int]], series: list[int]) -> bool:
     '''
-    Return whether the list of integers 'seires' can be found in
-    original or revsered order in any row of 'matrix'.
+    Return True if the list of integers 'seires' can be found in original
+    order or revsered order in any row of 'matrix'. Otherwise, return False.
 
     Preconditions: len(matrix) == N
                    len(matrix[i]) == M, 0 <= i < N
@@ -287,8 +284,9 @@ def search_rows(matrix: list[list[int]], series: list[int]) -> bool:
 
 def search_columns(matrix: list[list[int]], series: list[int]) -> bool:
     '''
-    Return whether the list of integers 'seires' can be found in
-    original or revsered order in any column of 'matrix'.
+    Return True if the list of integers 'seires' can be found in original
+    order or revsered order in any column of 'matrix'. Otherwise, return
+    False.
 
     Preconditions: len(matrix) == N
                    len(matrix[i]) == M, 0 <= i < N
@@ -310,8 +308,9 @@ def search_columns(matrix: list[list[int]], series: list[int]) -> bool:
 
 def search_diagonals(matrix: list[list[int]], series: list[int]) -> bool:
     '''
-    Return whether the list of integers 'seires' can be found in
-    original or revsered order in any diagonals of 'matrix'.
+    Return True if the list of integers 'seires' can be found in original
+    order or revsered order in any diagonal of 'matrix'. Otherwise, return
+    False.
 
     Preconditions: len(matrix) == N
                    len(matrix[i]) == M, 0 <= i < N
@@ -386,9 +385,9 @@ def search_diagonals(matrix: list[list[int]], series: list[int]) -> bool:
 def validate_coordinates(matrix: list[list[int]], row_idx: int,
                          col_idx: int, series: list[int]) -> bool:
     '''
-    Return whether the list of numbers 'series' can be found at and overlap
+    Return True if the list of numbers 'series' can be found at and overlap
     the given ['row_idx', 'cod_idx'] coordinates either via row, column or
-    diagonal.
+    diagonal. Otherwise, return False.
 
     Preconditions: len(matrix) == N
                    len(matrix[i]) == M, 0 <= i < N
