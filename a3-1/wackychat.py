@@ -83,6 +83,7 @@ def create_temporary_file() -> str:
     Create a temporary file inside the system's temporary directory and return
     its absolute path.
 
+    >>> import os
     >>> file_path = create_temporary_file()
     >>> os.path.exists(file_path)
     True
@@ -275,6 +276,12 @@ def get_user_word_frequency(context: dict, name: str) -> dict:
     >>> freq == {"I": 1, "am": 1, "working": 1, "on": 1, "CSCA08": 1, \
         "Assignment": 1, "3!": 1}
     True
+    >>> freq = get_user_word_frequency(SAMPLE_DICT_CONTEXT_1, "Charles Wong")
+    >>> freq == {}
+    True
+    >>> freq = get_user_word_frequency({}, "Charles Wong")
+    >>> freq == {}
+    True
     '''
     if "messages" not in context:
         return {}
@@ -312,6 +319,13 @@ def get_user_character_frequency_percentage(context: dict, name: str) -> dict:
         't': 0.027777777777777776, '3': 0.027777777777777776, \
         '!': 0.027777777777777776}
     True
+    >>> freq = get_user_character_frequency_percentage(SAMPLE_DICT_CONTEXT_1, \
+        "Charles Wong")
+    >>> freq == {}
+    True
+    >>> freq = get_user_character_frequency_percentage({}, "Charles Wong")
+    >>> freq == {}
+    True
     '''
     if "messages" not in context:
         return {}
@@ -337,6 +351,8 @@ def get_most_popular_group(context: dict) -> int | None:
 
     >>> get_most_popular_group(SAMPLE_DICT_CONTEXT_1)
     9119
+    >>> get_most_popular_group({}) is None
+    True
     '''
     if "channels" not in context or "groups" not in context or \
             "messages" not in context:
@@ -346,6 +362,9 @@ def get_most_popular_group(context: dict) -> int | None:
     for channel in context["channels"]:
         channel2group[channel["id"]] = channel["group"]
 
+    if len(channel2group) == 0:
+        return None
+
     group_messages_cnt = {}
     for message in context["messages"]:
         group = channel2group[message["channel"]]
@@ -353,6 +372,9 @@ def get_most_popular_group(context: dict) -> int | None:
             group_messages_cnt[group] = 1
         else:
             group_messages_cnt[group] += 1
+
+    if len(group_messages_cnt) == 0:
+        return None
 
     max_cnt = max(v for v in group_messages_cnt.values())
     min_group_id = min(k for (k, v) in group_messages_cnt.items() \
